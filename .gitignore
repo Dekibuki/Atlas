@@ -1,0 +1,13 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Atlas/obj
+/.vs/Atlas.slnx/DesignTimeBuild/.dtbcache.v2
+/.vs/Atlas.slnx/FileContentIndex/5e109148-281c-469e-b254-e6752a7a64f3.vsidx
+/.vs/Atlas.slnx/v18/.suo
+/.vs/Atlas.slnx/v18/DocumentLayout.backup.json
+/.vs/Atlas.slnx/v18/DocumentLayout.json
+/.dockerignore
+/.vs/Atlas.slnx/v18/DocumentLayout.json
+/.vs/Atlas.slnx/v18/.suo
