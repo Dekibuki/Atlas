@@ -1,4 +1,5 @@
 ﻿using Atlas.API.Requests;
+using Atlas.API.Responses;
 
 namespace Atlas.Services.ApplicationsService
 {
@@ -7,6 +8,6 @@ namespace Atlas.Services.ApplicationsService
     /// </summary>
     public interface IApplicationsService
     {
-        public Task<int> CreateApplication(CustomerApplicationRequest request);
+        public Task<CustomerApplicationResponse> CreateApplication(CustomerApplicationRequest request);
     }
 }

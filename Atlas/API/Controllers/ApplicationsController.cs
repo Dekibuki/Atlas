@@ -1,5 +1,6 @@
 ﻿using Atlas.API.Requests;
 using Atlas.API.Responses;
+using Atlas.Services.ApplicationsService;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -10,6 +11,13 @@ namespace Atlas.API.Controllers
     [Produces("application/json")]
     public class ApplicationsController : ControllerBase
     {
+        public readonly IApplicationsService applicationsService;
+
+        public ApplicationsController(IApplicationsService applicationsService)
+        {
+            this.applicationsService = applicationsService;
+        }
+
         /// <summary>
         /// Receives a customer's application containing all their data, passing it to a service which then validates the data, 
         /// creates the application and awaits it's approval. The application's approval status is returned, along with the application's ID.
@@ -23,8 +31,8 @@ namespace Atlas.API.Controllers
         [SwaggerResponse(StatusCodes.Status500InternalServerError, "Error while creating customer application.")]
         public async Task<ActionResult<CustomerApplicationResponse>> CreateApplication([FromBody] CustomerApplicationRequest request)
         {
-            // TO DO: Implement application creation logic here
-            return Ok();
+            CustomerApplicationResponse response = await applicationsService.CreateApplication(request);
+            return Created(response.ApplicationId.ToString(), response);
         }
     }
 }

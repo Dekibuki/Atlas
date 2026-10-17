@@ -5,7 +5,7 @@
     /// </summary>
     public enum DocumentType
     {
-        ID,
+        ID_CARD,
         PASSPORT,
         SELFIE
     }

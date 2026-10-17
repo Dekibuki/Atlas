@@ -1,4 +1,9 @@
 
+using Atlas.Repository.AtlastDb;
+using Atlas.Services.ApplicationsService;
+using Atlas.Services.IDNowService;
+using Microsoft.EntityFrameworkCore;
+
 namespace Atlas.Program
 {
     public class Program
@@ -7,8 +12,16 @@ namespace Atlas.Program
         {
             WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddDbContext<AtlasDbContext>(options =>
+                options.UseInMemoryDatabase("AtlasDatabase"));
+
             builder.Services.AddControllers();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddScoped<IApplicationsService, ApplicationService>();
+            builder.Services.AddScoped<IIDNowService, IDNowService>();
+
+            builder.Services.AddHttpClient<IIDNowService, IDNowService>();
 
             WebApplication app = builder.Build();
 
