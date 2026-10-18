@@ -1,6 +1,6 @@
 ﻿using Atlas.Domain.Enum;
 
-namespace Atlas.API.Responses
+namespace Atlas.API.Responses.IDNow
 {
     public class IDNowDocumentResponse
     {

@@ -1,5 +1,5 @@
 ﻿using Atlas.API.Requests;
-using Atlas.API.Responses;
+using Atlas.API.Responses.CustomerApplication;
 
 namespace Atlas.Services.ApplicationsService
 {

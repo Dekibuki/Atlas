@@ -15,7 +15,7 @@ namespace Atlas.API.Requests
 
         public Country Country { get; set; }
 
-        public string NationalId { get; set; } = string.Empty;
+        public string? NationalId { get; set; }
 
         public string Email { get; set; } = string.Empty;
 

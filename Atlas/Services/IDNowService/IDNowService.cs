@@ -1,5 +1,5 @@
 ﻿using Atlas.API.DTO;
-using Atlas.API.Responses;
+using Atlas.API.Responses.IDNow;
 
 namespace Atlas.Services.IDNowService
 {
@@ -16,7 +16,7 @@ namespace Atlas.Services.IDNowService
             this.httpClient = httpClient;
         }
 
-        public async Task<IDNowDocumentResponse?> ProcessCustomerDocumentAndSelfieImages(IDNowDocumentDTO customerDocumentData)
+        public async Task<IDNowDocumentResponse?> ProcessIdentifications(IDNowDocumentDTO customerDocumentData)
         {
             // Authorization left out - unknown what kind of authorization this third-party API uses
             HttpResponseMessage response = await httpClient.PostAsJsonAsync(ProcessingURL, customerDocumentData);

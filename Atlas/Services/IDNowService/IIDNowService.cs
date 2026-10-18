@@ -1,5 +1,5 @@
 ﻿using Atlas.API.DTO;
-using Atlas.API.Responses;
+using Atlas.API.Responses.IDNow;
 
 namespace Atlas.Services.IDNowService
 {
@@ -8,6 +8,6 @@ namespace Atlas.Services.IDNowService
     /// </summary>
     public interface IIDNowService
     {
-        public Task<IDNowDocumentResponse?> ProcessCustomerDocumentAndSelfieImages(IDNowDocumentDTO customerDocumentData);
+        public Task<IDNowDocumentResponse?> ProcessIdentifications(IDNowDocumentDTO customerDocumentData);
     }
 }

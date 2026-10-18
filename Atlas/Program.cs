@@ -1,7 +1,9 @@
 
+using Atlas.Repository.ApplicationsRepository;
 using Atlas.Repository.AtlastDb;
 using Atlas.Services.ApplicationsService;
 using Atlas.Services.IDNowService;
+using Atlas.Services.RefinitivWorldCheckService;
 using Microsoft.EntityFrameworkCore;
 
 namespace Atlas.Program
@@ -19,9 +21,14 @@ namespace Atlas.Program
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddScoped<IApplicationsService, ApplicationService>();
-            builder.Services.AddScoped<IIDNowService, IDNowService>();
 
+            builder.Services.AddScoped<IIDNowService, IDNowService>();
             builder.Services.AddHttpClient<IIDNowService, IDNowService>();
+
+            builder.Services.AddScoped<IRefinitivWorldCheckService, RefinitivWorldCheckService>();
+            builder.Services.AddHttpClient<IRefinitivWorldCheckService, RefinitivWorldCheckService>();
+
+            builder.Services.AddScoped<IApplicationsRepository, ApplicationsRepository>();
 
             WebApplication app = builder.Build();
 

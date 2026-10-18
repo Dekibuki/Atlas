@@ -1,6 +1,6 @@
 ﻿using Atlas.Domain.Enum;
 
-namespace Atlas.API.Responses
+namespace Atlas.API.Responses.CustomerApplication
 {
     /// <summary>
     /// The response the API send back to the customer after they have made their application.

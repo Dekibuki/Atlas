@@ -1,6 +1,7 @@
 ﻿using Atlas.API.Requests;
-using Atlas.API.Responses;
+using Atlas.API.Responses.CustomerApplication;
 using Atlas.Services.ApplicationsService;
+using Atlas.Domain.Enum;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -11,11 +12,15 @@ namespace Atlas.API.Controllers
     [Produces("application/json")]
     public class ApplicationsController : ControllerBase
     {
-        public readonly IApplicationsService applicationsService;
+        private const int TimeoutMinutes = 3;
 
-        public ApplicationsController(IApplicationsService applicationsService)
+        private readonly IApplicationsService applicationsService;
+        private readonly ILogger<ApplicationsController> logger;
+
+        public ApplicationsController(IApplicationsService applicationsService, ILogger<ApplicationsController> logger)
         {
             this.applicationsService = applicationsService;
+            this.logger = logger;
         }
 
         /// <summary>
@@ -31,8 +36,23 @@ namespace Atlas.API.Controllers
         [SwaggerResponse(StatusCodes.Status500InternalServerError, "Error while creating customer application.")]
         public async Task<ActionResult<CustomerApplicationResponse>> CreateApplication([FromBody] CustomerApplicationRequest request)
         {
-            CustomerApplicationResponse response = await applicationsService.CreateApplication(request);
-            return Created(response.ApplicationId.ToString(), response);
+            try
+            {
+                CustomerApplicationResponse response = await applicationsService.CreateApplication(request).WaitAsync(TimeSpan.FromMinutes(TimeoutMinutes));
+
+                return Created(response.ApplicationId.ToString(), response);
+            }
+            catch (TimeoutException e)
+            {
+                logger.LogError("Process has exceeded 3 minutes.");
+                CustomerApplicationResponse failedResponse = new CustomerApplicationResponse
+                {
+                    ApplicationId = 0,
+                    Status = ApplicationStatus.REJECTED
+                };
+
+                return Created(failedResponse.ApplicationId.ToString(), failedResponse);
+            }
         }
     }
 }

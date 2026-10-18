@@ -17,7 +17,7 @@ namespace Atlas.Domain.Models.CustomerApplication
 
         public Country Country { get; set; }
 
-        public string NationalId { get; set; } = string.Empty;
+        public string? NationalId { get; set; }
 
         public string Email { get; set; } = string.Empty;
 
@@ -26,5 +26,7 @@ namespace Atlas.Domain.Models.CustomerApplication
         public bool TermsAccepted { get; set; }
 
         public ApplicationStatus Status { get; set; }
+
+        public virtual List<ApplicationDocument> Documents { get; set; } = new List<ApplicationDocument>();
     }
 }
