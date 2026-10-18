@@ -9,6 +9,8 @@ namespace Atlas.Domain.Models.CustomerApplication
     {
         public int Id { get; set; }
 
+        public DateTime CreatedOn { get; set; }
+
         public int CustomerApplicationId { get; set; }
 
         public DocumentType Type { get; set; }

@@ -1,9 +1,10 @@
-﻿using Atlas.API.Requests;
-using Atlas.API.Responses.CustomerApplication;
+﻿using Atlas.API.Responses.CustomerApplication;
 using Atlas.Services.ApplicationsService;
 using Atlas.Domain.Enum;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using Atlas.Domain.Models.CustomerApplication;
+using Atlas.API.Requests.CustomerApplication;
 
 namespace Atlas.API.Controllers
 {
@@ -53,6 +54,20 @@ namespace Atlas.API.Controllers
 
                 return Created(failedResponse.ApplicationId.ToString(), failedResponse);
             }
+        }
+
+        /// <summary>
+        /// Returns a list of customer applications based on either nationalId or a combination of name (first + last) and date of birth
+        /// </summary>
+        /// <returns>Customer's applications</returns>
+        [HttpGet]
+        [SwaggerOperation(Summary = "An API endpoint for retreiving a list of customer applications based on either nationalId or name + dateOfBirth.")]
+        [SwaggerResponse(StatusCodes.Status200OK, "Customer applications retreived successfully.")]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized, "Unauthorized access.")]
+        [SwaggerResponse(StatusCodes.Status500InternalServerError, "Error while retrieving customer applications.")]
+        public async Task<ActionResult<CustomerApplicationListResponse>> GetApplications([FromBody] CustomerApplicationsListRequest request)
+        {
+            return Ok(await applicationsService.GetAllApplicationsForCustomer(request));
         }
     }
 }

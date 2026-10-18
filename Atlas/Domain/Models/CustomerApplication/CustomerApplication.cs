@@ -9,6 +9,8 @@ namespace Atlas.Domain.Models.CustomerApplication
     {
         public int Id { get; set; }
 
+        public DateTime CreatedOn { get; set; }
+
         public string FirstName { get; set; } = string.Empty;
 
         public string LastName { get; set; } = string.Empty;

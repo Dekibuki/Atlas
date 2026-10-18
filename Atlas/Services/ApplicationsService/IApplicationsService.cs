@@ -1,4 +1,4 @@
-﻿using Atlas.API.Requests;
+﻿using Atlas.API.Requests.CustomerApplication;
 using Atlas.API.Responses.CustomerApplication;
 
 namespace Atlas.Services.ApplicationsService
@@ -9,5 +9,7 @@ namespace Atlas.Services.ApplicationsService
     public interface IApplicationsService
     {
         public Task<CustomerApplicationResponse> CreateApplication(CustomerApplicationRequest request);
+
+        public Task<CustomerApplicationListResponse> GetAllApplicationsForCustomer(CustomerApplicationsListRequest request);
     }
 }

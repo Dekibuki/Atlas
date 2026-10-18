@@ -9,11 +9,12 @@ namespace Atlas.Domain.Models.CustomerApplication
         {
             builder.HasKey(x => x.Id);
 
+            builder.Property(x => x.CreatedOn).ValueGeneratedOnAdd();
             builder.Property(x => x.FirstName).IsRequired();
             builder.Property(x => x.LastName).IsRequired();
             builder.Property(x => x.DateOfBirth).IsRequired();
             builder.Property(x => x.Country).IsRequired();
-            builder.Property(x => x.NationalId).IsRequired();
+            builder.Property(x => x.NationalId).IsRequired(false);
             builder.Property(x => x.Email).IsRequired();
             builder.Property(x => x.Phone).IsRequired();
             builder.Property(x => x.TermsAccepted).IsRequired();

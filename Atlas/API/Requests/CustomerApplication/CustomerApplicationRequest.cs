@@ -1,6 +1,6 @@
 ﻿using Atlas.Domain.Enum;
 
-namespace Atlas.API.Requests
+namespace Atlas.API.Requests.CustomerApplication
 {
     /// <summary>
     /// Request body for client's application, containing their personal information and personal documents.

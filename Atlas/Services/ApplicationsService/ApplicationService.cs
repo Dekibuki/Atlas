@@ -1,5 +1,5 @@
 ﻿using Atlas.API.DTO;
-using Atlas.API.Requests;
+using Atlas.API.Requests.CustomerApplication;
 using Atlas.API.Responses.CustomerApplication;
 using Atlas.API.Responses.IDNow;
 using Atlas.API.Responses.RefinitivWorldCheck;
@@ -17,6 +17,8 @@ namespace Atlas.Services.ApplicationsService
     /// </summary>
     public class ApplicationService : IApplicationsService
     {
+        private const int MaximumRetries = 3;
+
         private readonly CustomerApplicationResponse FailedResponse = new CustomerApplicationResponse
         {
             ApplicationId = 0,
@@ -42,6 +44,7 @@ namespace Atlas.Services.ApplicationsService
 
         public async Task<CustomerApplicationResponse> CreateApplication(CustomerApplicationRequest request)
         {
+            // Since there is to be no human intervention - if a failure is found, a rejected application is sent back.
             try
             {
                 IDNowDocumentDTO customerDocumentData = request.Documents
@@ -79,6 +82,17 @@ namespace Atlas.Services.ApplicationsService
                 logger.LogError($"There was an issue during the application process: {e.Message}", e);
                 return FailedResponse;
             }
+        }
+
+        public async Task<CustomerApplicationListResponse> GetAllApplicationsForCustomer(CustomerApplicationsListRequest request)
+        {
+            List<CustomerApplication> applications =  await applicationsRepository.GetCustomerApplicationsByNationalIdOrNameAndDateOfBirth(
+                                                            request.NationalId,
+                                                            request.FirstName,
+                                                            request.LastName,
+                                                            request.DateOfBirth);
+
+            return new CustomerApplicationListResponse { Applications = applications };
         }
 
         private async Task<bool> ProcessIdentityAndScreening(IDNowDocumentDTO customerDocumentData, RefinitivWorldCheckScreeningDTO screeningData)

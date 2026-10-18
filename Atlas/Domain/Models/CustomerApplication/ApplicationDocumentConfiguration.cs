@@ -9,6 +9,7 @@ namespace Atlas.Domain.Models.CustomerApplication
         {
             builder.HasKey(x => x.Id);
 
+            builder.Property(x => x.CreatedOn).ValueGeneratedOnAdd();
             builder.Property(x => x.CustomerApplicationId).IsRequired();
             builder.Property(x => x.Type).IsRequired();
             builder.Property(x => x.Image).IsRequired();
