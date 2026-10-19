@@ -8,6 +8,7 @@ There are 3 GET endpoints:
 * atlas/applications - gets a list of all applications
 * atlas/accounts - gets a list of all accounts
 * atlas/cards - gets a list of all cards
+All 3 GET endpoints can be called with no parameters, only the correct route.
 
 There is one POST endpoint - **atlas/applications**. It receives a JSON Body similar to this:
 ```
