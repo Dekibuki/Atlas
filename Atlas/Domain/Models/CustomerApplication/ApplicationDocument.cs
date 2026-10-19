@@ -16,7 +16,5 @@ namespace Atlas.Domain.Models.CustomerApplication
         public DocumentType Type { get; set; }
 
         public byte[] Image { get; set; } = new byte[1];
-
-        public virtual CustomerApplication CustomerApplication { get; set; } = null!;
     }
 }

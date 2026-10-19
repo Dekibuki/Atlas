@@ -1,6 +1,6 @@
-﻿using Atlas.Domain.Models.Card;
-using Atlas.Domain.Models.CustomerApplication;
-using Atlas.Repository.AtlastDb;
+﻿using Atlas.API.DTO;
+using Atlas.API.Responses.Card;
+using Atlas.Domain.Models.Card;
 using Atlas.Repository.CardsRepository;
 
 namespace Atlas.Services.CardsService
@@ -17,25 +17,30 @@ namespace Atlas.Services.CardsService
             this.cardsRepository = cardsRepository;
         }
 
-        public async Task CreateCardFromCustomerApplication(CustomerApplication customerApplication)
+        public async Task CreateCard(CardCreationDto cardDto)
         {
-            string fullCustomerName = String.Join(" ", customerApplication.FirstName, customerApplication.LastName);
-
             // One user should have one card - should be discussed
             if (!await cardsRepository.CheckIfCardExistsByNationalIdOrNameAndDateOfBirth(
-                customerApplication.NationalId,
-                fullCustomerName,
-                customerApplication.DateOfBirth))
+                cardDto.NationalId,
+                cardDto.Name,
+                cardDto.DateOfBirth))
             {
                 Card card = new Card
                 {
-                    DateOfBirth = customerApplication.DateOfBirth,
-                    Name = fullCustomerName,
-                    NationalId = customerApplication.NationalId
+                    CreatedOn = DateTime.Now,
+                    DateOfBirth = cardDto.DateOfBirth,
+                    Name = cardDto.Name,
+                    NationalId = cardDto.NationalId
                 };
 
                 await cardsRepository.CreateCard(card);
             }
+        }
+
+        public async Task<CardsListResponse> GetAllCards()
+        {
+            List<Card> cards = await cardsRepository.GetAllCards() ?? new List<Card>();
+            return new CardsListResponse { Cards = cards, TotalCount = cards.Count };
         }
     }
 }

@@ -10,6 +10,6 @@ namespace Atlas.Services.ApplicationsService
     {
         public Task<CustomerApplicationResponse> CreateApplication(CustomerApplicationRequest request);
 
-        public Task<CustomerApplicationListResponse> GetAllApplicationsForCustomer(CustomerApplicationsListRequest request);
+        public Task<CustomerApplicationListResponse> GetAllApplications();
     }
 }

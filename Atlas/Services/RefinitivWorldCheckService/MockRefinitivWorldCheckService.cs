@@ -6,7 +6,7 @@ namespace Atlas.Services.RefinitivWorldCheckService
 {
     public class MockRefinitivWorldCheckService : IRefinitivWorldCheckService
     {
-        public Task<RefinitivWorldCheckResponse?> ProcessScreening(RefinitivWorldCheckScreeningDTO screeningData)
+        public Task<RefinitivWorldCheckResponse?> ProcessScreening(RefinitivWorldCheckScreeningDto screeningData)
         {
             return Task.FromResult(new RefinitivWorldCheckResponse
             {

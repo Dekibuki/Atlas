@@ -16,3 +16,5 @@
 /.vs/Atlas.slnx/v18/.futdcache.v2
 /Atlas/Atlas.csproj.user
 /.vs/ProjectEvaluation
+/.vs
+/Atlas/bin/Debug/net10.0

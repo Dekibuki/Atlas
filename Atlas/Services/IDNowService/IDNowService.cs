@@ -19,7 +19,7 @@ namespace Atlas.Services.IDNowService
             this.httpClient = httpClient;
         }
 
-        public async Task<IDNowDocumentResponse?> ProcessIdentifications(IDNowDocumentDTO customerDocumentData)
+        public async Task<IDNowDocumentResponse?> ProcessIdentifications(IDNowDocumentDto customerDocumentData)
         {
             for (int attempt = 1; attempt <= MaximumAttempts; attempt++)
             {

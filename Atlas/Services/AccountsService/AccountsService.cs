@@ -1,5 +1,6 @@
-﻿using Atlas.Domain.Models.Account;
-using Atlas.Domain.Models.CustomerApplication;
+﻿using Atlas.API.DTO;
+using Atlas.API.Responses.Account;
+using Atlas.Domain.Models.Account;
 using Atlas.Repository.AccountsRepository;
 
 namespace Atlas.Services.AccountsService
@@ -16,27 +17,32 @@ namespace Atlas.Services.AccountsService
             this.accountsRepository = accountsRepository;
         }
 
-        public async Task CreateAccountFromApplication(CustomerApplication customerApplication)
+        public async Task CreateAccount(AccountCreationDto accountDto)
         {
-            string fullCustomerName = String.Join(" ", customerApplication.FirstName, customerApplication.LastName);
-
             // One customer should have one account
             if (!await accountsRepository.CheckIfAccountExistsForNationalIdOrNameAndDateOfBirth(
-                customerApplication.NationalId,
-                fullCustomerName,
-                customerApplication.DateOfBirth))
+                accountDto.NationalId,
+                accountDto.Name,
+                accountDto.DateOfBirth))
             {
                 Account account = new Account
                 {
-                    Name = fullCustomerName,
-                    NationalId = customerApplication.NationalId,
-                    DateOfBirth = customerApplication.DateOfBirth,
-                    Email = customerApplication.Email,
-                    Phone = customerApplication.Phone
+                    CreatedOn = DateTime.Now,
+                    Name = accountDto.Name,
+                    NationalId = accountDto.NationalId,
+                    DateOfBirth = accountDto.DateOfBirth,
+                    Email = accountDto.Email,
+                    Phone = accountDto.Phone
                 };
 
                 await accountsRepository.CreateAccount(account);
             }
+        }
+
+        public async Task<AccountsListResponse> GetAllAccounts()
+        {
+            List<Account> accounts = await accountsRepository.GetAllAccounts() ?? new List<Account>();
+            return new AccountsListResponse { Accounts = accounts, TotalCount = accounts.Count };
         }
     }
 }

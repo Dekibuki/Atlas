@@ -1,4 +1,5 @@
-﻿using Atlas.Domain.Models.CustomerApplication;
+﻿using Atlas.API.DTO;
+using Atlas.API.Responses.Account;
 
 namespace Atlas.Services.AccountsService
 {
@@ -7,6 +8,8 @@ namespace Atlas.Services.AccountsService
     /// </summary>
     public interface IAccountsService
     {
-        public Task CreateAccountFromApplication(CustomerApplication customerApplication);
+        public Task CreateAccount(AccountCreationDto accountDto);
+
+        public Task<AccountsListResponse> GetAllAccounts();
     }
 }

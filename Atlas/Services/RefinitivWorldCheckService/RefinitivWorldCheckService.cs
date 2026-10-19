@@ -19,7 +19,7 @@ namespace Atlas.Services.RefinitivWorldCheckService
             this.httpClient = httpClient;
         }
 
-        public async Task<RefinitivWorldCheckResponse?> ProcessScreening(RefinitivWorldCheckScreeningDTO screeningData)
+        public async Task<RefinitivWorldCheckResponse?> ProcessScreening(RefinitivWorldCheckScreeningDto screeningData)
         {
             for (int attempt = 1; attempt <= MaximumAttempts; attempt++)
             {

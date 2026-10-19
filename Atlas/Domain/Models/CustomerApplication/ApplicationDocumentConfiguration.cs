@@ -15,7 +15,7 @@ namespace Atlas.Domain.Models.CustomerApplication
             builder.Property(x => x.Image).IsRequired();
 
             builder
-                .HasOne(x => x.CustomerApplication)
+                .HasOne<CustomerApplication>()
                 .WithMany(x => x.Documents)
                 .HasForeignKey(x => x.CustomerApplicationId);
         }

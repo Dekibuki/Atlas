@@ -8,6 +8,6 @@ namespace Atlas.Services.RefinitivWorldCheckService
     /// </summary>
     public interface IRefinitivWorldCheckService
     {
-        public Task<RefinitivWorldCheckResponse?> ProcessScreening(RefinitivWorldCheckScreeningDTO screeningData);
+        public Task<RefinitivWorldCheckResponse?> ProcessScreening(RefinitivWorldCheckScreeningDto screeningData);
     }
 }

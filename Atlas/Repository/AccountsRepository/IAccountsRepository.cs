@@ -10,5 +10,7 @@ namespace Atlas.Repository.AccountsRepository
         public Task CreateAccount(Account account);
 
         public Task<bool> CheckIfAccountExistsForNationalIdOrNameAndDateOfBirth(string? nationalId, string name, DateTime dateOfBirth);
+
+        public Task<List<Account>> GetAllAccounts();
     }
 }

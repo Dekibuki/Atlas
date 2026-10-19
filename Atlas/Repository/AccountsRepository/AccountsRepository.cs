@@ -27,5 +27,10 @@ namespace Atlas.Repository.AccountsRepository
             return await atlasDbContext.Accounts
                 .AnyAsync(x => (nationalId != null && nationalId == x.NationalId) || (x.DateOfBirth == dateOfBirth && x.Name.Equals(name)));
         }
+
+        public async Task<List<Account>> GetAllAccounts()
+        {
+            return await atlasDbContext.Accounts.ToListAsync();
+        }
     }
 }

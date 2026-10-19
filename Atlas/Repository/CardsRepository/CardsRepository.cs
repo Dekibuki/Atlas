@@ -27,5 +27,10 @@ namespace Atlas.Repository.CardsRepository
             return await atlasDbContext.Cards
                 .AnyAsync(x => (nationalId != null && nationalId == x.NationalId) || (x.DateOfBirth == dateOfBirth && x.Name.Equals(name)));
         }
+
+        public async Task<List<Card>> GetAllCards()
+        {
+            return await atlasDbContext.Cards.ToListAsync();
+        }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Atlas.API.DTO
 {
-    public class IDNowDocumentDTO
+    public class IDNowDocumentDto
     {
         public DocumentType DocumentType { get; set; }
 

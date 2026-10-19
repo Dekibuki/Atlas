@@ -10,5 +10,7 @@ namespace Atlas.Repository.CardsRepository
         public Task CreateCard(Card card);
 
         public Task<bool> CheckIfCardExistsByNationalIdOrNameAndDateOfBirth(string? nationalId, string name, DateTime dateOfBirth);
+
+        public Task<List<Card>> GetAllCards();
     }
 }

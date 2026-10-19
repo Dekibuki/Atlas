@@ -6,7 +6,7 @@ namespace Atlas.Services.IDNowService
 {
     public class MockIDNowService : IIDNowService
     {
-        public Task<IDNowDocumentResponse?> ProcessIdentifications(IDNowDocumentDTO customerDocumentData)
+        public Task<IDNowDocumentResponse?> ProcessIdentifications(IDNowDocumentDto customerDocumentData)
         {
             return Task.FromResult(new IDNowDocumentResponse
             {

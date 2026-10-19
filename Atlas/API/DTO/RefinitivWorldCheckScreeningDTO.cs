@@ -2,7 +2,7 @@
 
 namespace Atlas.API.DTO
 {
-    public class RefinitivWorldCheckScreeningDTO
+    public class RefinitivWorldCheckScreeningDto
     {
         public string Name { get; set; } = string.Empty;
 

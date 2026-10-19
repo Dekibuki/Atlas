@@ -11,6 +11,6 @@ namespace Atlas.Repository.ApplicationsRepository
 
         public Task CreateCustomerDocuments(List<ApplicationDocument> applicationDocuments);
 
-        public Task<List<CustomerApplication>> GetCustomerApplicationsByNationalIdOrNameAndDateOfBirth(string? nationalId, string firstName, string lastName, DateTime dateOfBirth);
+        public Task<List<CustomerApplication>> GetAllCustomerApplications();
     }
 }

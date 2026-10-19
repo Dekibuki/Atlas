@@ -8,6 +8,6 @@ namespace Atlas.Services.IDNowService
     /// </summary>
     public interface IIDNowService
     {
-        public Task<IDNowDocumentResponse?> ProcessIdentifications(IDNowDocumentDTO customerDocumentData);
+        public Task<IDNowDocumentResponse?> ProcessIdentifications(IDNowDocumentDto customerDocumentData);
     }
 }

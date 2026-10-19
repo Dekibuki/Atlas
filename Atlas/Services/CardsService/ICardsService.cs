@@ -1,4 +1,5 @@
-﻿using Atlas.Domain.Models.CustomerApplication;
+﻿using Atlas.API.DTO;
+using Atlas.API.Responses.Card;
 
 namespace Atlas.Services.CardsService
 {
@@ -7,6 +8,8 @@ namespace Atlas.Services.CardsService
     /// </summary>
     public interface ICardsService
     {
-        public Task CreateCardFromCustomerApplication(CustomerApplication customerApplication);
+        public Task CreateCard(CardCreationDto cardDto);
+
+        public Task<CardsListResponse> GetAllCards();
     }
 }
